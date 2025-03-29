@@ -22,6 +22,7 @@ export default [
     },
     rules: {
       ...js.configs.recommended.rules,
+
       ...reactHooks.configs.recommended.rules,
       ...react.configs['jsx-runtime'].rules,
       'react/prop-types': 0,
