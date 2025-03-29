@@ -16,13 +16,13 @@ export default [
         sourceType: 'module',
       },
     },
+
     plugins: {
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
     },
     rules: {
       ...js.configs.recommended.rules,
-
       ...reactHooks.configs.recommended.rules,
       ...react.configs['jsx-runtime'].rules,
       'react/prop-types': 0,
