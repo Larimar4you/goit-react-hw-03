@@ -1,57 +1,54 @@
 import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
 import s from './App.module.css';
 import ContactForm from '../contactForm/ContactForm';
-import SearchBox from '../searchBox/SearchBox';
+import SearchBox from '../seaContactsrchBox/SearchBox';
 import ContactList from '../contactList/ContactList';
+import initialContacts from '../contact/Contact.json';
 
-export default function App() {
-  const [contacts, setContacts] = useState(() => {
-    return (
-      JSON.parse(localStorage.getItem('contacts')) || [
-        { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-        { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-        { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-        { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-      ]
-    );
-  });
+const App = () => {
   const [filter, setFilter] = useState('');
+  const [contacts, setContacts] = useState(() => {
+    const itemContacts = window.localStorage.getItem('itemContacts');
+
+    if (itemContacts) {
+      return JSON.parse(itemContacts);
+    }
+
+    return initialContacts;
+  });
 
   // Сохраняет контакты в localStorage при их изменении, чтобы данные сохранялись между перезагрузками.
   useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
+    window.localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
 
-  // Добавляет новый контакт, проверяя дубликаты по имени. Генерирует уникальный id с помощью nanoid.
-  const addContact = (values, { resetForm }) => {
-    const newContact = { id: nanoid(), ...values };
-    setContacts(prev => [...prev, newContact]);
-    resetForm();
-  };
+  // // Добавляет новый контакт, проверяя дубликаты по имени. Генерирует уникальный id с помощью nanoid.
+  // const addContact = (values, { resetForm }) => {
+  //   const newContact = { id: nanoid(), ...values };
+  //   setContacts(prev => [...prev, newContact]);
+  //   resetForm();
+};
 
-  // Удаляет контакт из списка по его id.
-  const removeContactById = id => {
-    setContacts(prev => prev.filter(contact => contact.id !== id));
-  };
-  // const deleteContact = id => {
-  //   setContacts(prev => prev.filter(contact => contact.id !== id));
-  // };
+// Удаляет контакт из списка по его id.
+const removeContactById = id => {
+  setContacts(prev => prev.filter(contact => contact.id !== id));
+};
+// const deleteContact = id => {
+//   setContacts(prev => prev.filter(contact => contact.id !== id));
+// };
 
-  // Фильтрует контакты по имени, игнорируя регистр.
-  const filteredContacts = contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()));
+// Фильтрует контакты по имени, игнорируя регистр.
+const filteredContacts = contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()));
 
-  return (
-    <div>
-      <h1>Phonebook</h1>
-      <ContactForm onSubmit={addContact} />
-      <SearchBox filter={filter} onChange={setFilter} />
-      <ContactList contacts={filteredContacts} onDelete={deleteContact} />
-    </div>
-  );
-}
+return (
+  <div>
+    <h1>Phonebook</h1>
+    <ContactForm onSubmit={addContact} />
+    <SearchBox filter={filter} onChange={setFilter} />
+    <ContactList contacts={filteredContacts} onDelete={deleteContact} />
+  </div>
+);
 
 // Форма для добавления контактов. Использует Formik и Yup для управления вводом и валидации.
 function ContactForm({ onSubmit }) {
@@ -83,7 +80,7 @@ function SearchBox({ filter, onChange }) {
 }
 
 // рендерит список контактов
-function ContactList({ contacts, onDelete }) {
+function ContactItems({ contacts, onDelete }) {
   return (
     <ul>
       {contacts.map(({ id, name, number }) => (
@@ -95,3 +92,5 @@ function ContactList({ contacts, onDelete }) {
     </ul>
   );
 }
+<ContactItems contacts={filteredContacts} onDelete={removeContactById} />;
+export default App;
