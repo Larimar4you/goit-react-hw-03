@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
+import initialContacts from './components/Contact/Contact.json';
+import ContactForm from './components/contactForm/ContactForm';
+import ContactList from './components/contactList/ContactList';
+import { useFormik } from 'formik';
 import { nanoid } from 'nanoid';
-import s from './app/App.module.css';
-import ContactForm from '../contactForm/ContactForm';
-import SearchBox from '../seaContactsrchBox/SearchBox';
-import ContactList from '../contactList/ContactList';
-import initialContacts from '../contact/Contact.json';
+import * as Yup from 'yup';
 
 const App = () => {
-  const [filter, setFilter] = useState('');
+  // const [filter, setFilter] = useState('');
   const [contacts, setContacts] = useState(() => {
     const itemContacts = window.localStorage.getItem('itemContacts');
 
@@ -15,9 +15,25 @@ const App = () => {
       return JSON.parse(itemContacts);
     }
 
-    return initialContacts;
+    return [];
   });
 
+  const formik = useFormik({
+    initialValues: { name: '', phone: '', id: nanoid() },
+    onSubmit: values => {
+      alert(JSON.stringify(values));
+      values.id = nanoid();
+    },
+  });
+
+  return (
+    <div>
+      <h1>Phonebook</h1>
+      <ContactForm formik={formik} />
+      {/* <SearchBox /> */}
+      {contacts.length > 0 ? <ContactList contacts={contacts} /> : <p>no contucts</p>}
+    </div>
+  );
   // Сохраняет контакты в localStorage при их изменении, чтобы данные сохранялись между перезагрузками.
   // useEffect(() => {
   //   window.localStorage.setItem('contacts', JSON.stringify(contacts));
@@ -93,4 +109,4 @@ const App = () => {
 //   );
 // }
 // <ContactItems contacts={filteredContacts} onDelete={removeContactById} />;
-// export default App;
+export default App;
