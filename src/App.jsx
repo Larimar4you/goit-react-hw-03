@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
-import initialContacts from './components/Contact/Contact.json';
 import ContactForm from './components/contactForm/ContactForm';
 import ContactList from './components/ContactList/ContactList';
-import { useFormik } from 'formik';
+import { Formik, useFormik } from 'formik';
 import { nanoid } from 'nanoid';
 import * as Yup from 'yup';
 
