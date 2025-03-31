@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import ContactForm from './components/contactForm/ContactForm';
+// import ContactForm from './components/contactForm/ContactForm';
 import ContactList from './components/ContactList/ContactList';
 import { Formik, useFormik } from 'formik';
+// import SearchBox from './components/SearchBox/SearchBox';
 import { nanoid } from 'nanoid';
-import * as Yup from 'yup';
+// import * as Yup from 'yup';
 
 const App = () => {
-  // const [filter, setFilter] = useState('');
   const [contacts, setContacts] = useState(() => {
     const itemContacts = window.localStorage.getItem('itemContacts');
 
@@ -16,7 +16,7 @@ const App = () => {
 
     return [];
   });
-
+  const [filter, setFilter] = useState('');
   const formik = useFormik({
     initialValues: { name: '', phone: '', id: nanoid() },
     onSubmit: values => {
@@ -28,8 +28,10 @@ const App = () => {
   return (
     <div>
       <h1>Phonebook</h1>
+      <ContactForm onSubmit={addContact} />
+      <SearchBox value={filter} onChange={setFilter} />
+      <ContactList contacts={filteredContacts} onDelete={deleteContact} />
       <Formik {...formik} />
-      {/* <SearchBox /> */}
       {contacts.length > 0 ? <ContactList contacts={contacts} /> : <p>no contucts</p>}
     </div>
   );
