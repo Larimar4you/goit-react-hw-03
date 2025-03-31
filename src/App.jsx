@@ -29,7 +29,7 @@ const App = () => {
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactForm formik={formik} />
+      <Formik {...formik} />
       {/* <SearchBox /> */}
       {contacts.length > 0 ? <ContactList contacts={contacts} /> : <p>no contucts</p>}
     </div>
