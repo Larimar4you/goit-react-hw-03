@@ -20,7 +20,7 @@
   width: 320px;
   background-color: rgb(48, 46, 46);
   border: 1px solid black;
-  color: white; /* Додано, щоб текст був видимий на темному фоні */
+  color: white; /* щоб текст був видимий на темному фоні */
 }
 
 .contactForm input {
