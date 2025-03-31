@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-// import ContactForm from './components/contactForm/ContactForm';
+import ContactForm from './components/ContactForm/ContactForm';
 import ContactList from './components/ContactList/ContactList';
+import SearchBox from './components/SearchBox/SearchBox';
 import { Formik, useFormik } from 'formik';
 // import SearchBox from './components/SearchBox/SearchBox';
 import { nanoid } from 'nanoid';
@@ -17,6 +18,7 @@ const App = () => {
     return [];
   });
   const [filter, setFilter] = useState('');
+
   const formik = useFormik({
     initialValues: { name: '', phone: '', id: nanoid() },
     onSubmit: values => {
@@ -31,7 +33,7 @@ const App = () => {
       <ContactForm onSubmit={addContact} />
       <SearchBox value={filter} onChange={setFilter} />
       <ContactList contacts={filteredContacts} onDelete={deleteContact} />
-      <Formik {...formik} />
+      <ContactForm formik={formik} />
       {contacts.length > 0 ? <ContactList contacts={contacts} /> : <p>no contucts</p>}
     </div>
   );
