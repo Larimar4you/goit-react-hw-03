@@ -1,4 +1,4 @@
-.contactFormWrapper {
+.formWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7,13 +7,13 @@
   border-radius: 10px;
 }
 
-.contactFormWrapperField {
+.formWrapperField {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.contactForm {
+.form {
   margin: 0 auto;
   border-radius: 8px;
   padding: 16px;
@@ -23,18 +23,18 @@
   color: white; /* щоб текст був видимий на темному фоні */
 }
 
-.contactForm input {
+.form input {
   padding: 8px;
   border-radius: 4px;
   border: 1px solid #ccc;
 }
 
-.contactForm input:focus {
+.form input:focus {
   outline: none;
   border-color: #c57314;
 }
 
-.contactFormBtn {
+.formBtn {
   border-radius: 8px;
   padding: 6px 12px;
   min-width: 150px;
@@ -47,6 +47,6 @@
   transition: background 0.3s ease-in-out;
 }
 
-.contactFormBtn:hover {
+.formBtn:hover {
   background: #915700;
 }

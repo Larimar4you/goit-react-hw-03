@@ -7,7 +7,7 @@ import { nanoid } from 'nanoid';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object({
-  name: Yup.string().min(3, 'Минимум 3 символа').max(50, 'Максимум 50 символов').required('Обязательное поле'),
+  name: Yup.string().min(3, 'Мінімум 3 символи').max(50, 'Максимум 50 символів').required('Обязательное поле'),
   phone: Yup.string().matches(/^\d+$/, 'Только цифры').required('Обязательное поле'),
 });
 
@@ -26,6 +26,9 @@ const App = () => {
   });
 
   const [filter, setFilter] = useState('');
+  const addContact = newContact => {
+    setContacts(prevContacts => [...prevContacts, newContact]);
+  };
 
   useEffect(() => {
     window.localStorage.setItem('itemContacts', JSON.stringify(contacts));
@@ -57,9 +60,8 @@ const App = () => {
       <h1>Phonebook</h1>
       <ContactForm onSubmit={addContact} />
       <SearchBox value={filter} onChange={e => setFilter(e.target.value)} />
-      <ContactList contacts={filteredContacts} onDelete={deleteContact} />
+      {filteredContacts.length > 0 ? <ContactList contacts={filteredContacts} onDelete={deleteContact} /> : <p>No contacts</p>}
       <ContactForm formik={formik} />
-      {contacts.length > 0 ? <ContactList contacts={contacts} /> : <p>no contucts</p>}
     </div>
   );
 };
