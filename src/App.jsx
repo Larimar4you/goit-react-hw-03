@@ -7,6 +7,11 @@ import { useFormik } from 'formik';
 import { nanoid } from 'nanoid';
 import * as Yup from 'yup';
 
+const validationSchema = Yup.object({
+  name: Yup.string().min(3, 'Мінімум 3 символи').max(50, 'Максимум 50 символів').required('Обязательное поле'),
+  phone: Yup.string().matches(/^\d+$/, 'Только цифры').required('Обязательное поле'),
+});
+
 const App = () => {
   const [contacts, setContacts] = useState(() => {
     const itemContacts = window.localStorage.getItem('itemContacts');
@@ -42,29 +47,23 @@ const App = () => {
     },
   });
 
-  const searchContacts = contacts.filter(item => item.name.toLowerCase().includes(searchValue.toLowerCase()));
+  const searchContacts = contacts.filter(item => item.name.toLowerCase().includes(filter.toLowerCase()));
 
   const deleteContact = id => {
     setContacts(prevContacts => prevContacts.filter(contact => contact.id !== id));
   };
 
-  const validationSchema = Yup.object({
-    name: Yup.string().min(3, 'Мінімум 3 символи').max(50, 'Максимум 50 символів').required('Обязательное поле'),
-    phone: Yup.string().matches(/^\d+$/, 'Только цифры').required('Обязательное поле'),
-  });
-
   return (
     <section className={s.container}>
       <h1 className={s.title}>Phonebook</h1>
-      <ContactForm formik={addContact} />
 
       <SearchBox value={filter} onChange={e => setFilter(e.target.value)} />
 
-      {filteredContacts.length > 0 ? <ContactList contacts={filteredContacts} onDelete={deleteContact} /> : <p>No contacts</p>}
+      {searchContacts.length > 0 ? <ContactList contacts={searchContacts} onDelete={deleteContact} /> : <p>No contacts</p>}
 
       <ContactForm formik={formik} />
 
-      <ContactList contacts={searchContacts} onDeleteContact={handleDeleteContact} />
+      <ContactList contacts={searchContacts} onDeleteContact={deleteContact} />
     </section>
   );
 };
