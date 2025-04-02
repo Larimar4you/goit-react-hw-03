@@ -1,10 +1,11 @@
+import s from './App.module.css';
 import { useState, useEffect } from 'react';
 import ContactForm from './components/ContactForm/ContactForm';
-// import ContactList from './components/Test/ContactList';
-// import SearchBox from './components/SearchBox/SearchBox';
+import ContactList from './components/Test/ContactList';
+import SearchBox from './components/SearchBox/SearchBox';
 import { useFormik } from 'formik';
 import { nanoid } from 'nanoid';
-// import * as Yup from 'yup';
+import * as Yup from 'yup';
 
 // const validationSchema = Yup.object({
 //   name: Yup.string().min(3, 'Мінімум 3 символи').max(50, 'Максимум 50 символів').required('Обязательное поле'),
@@ -12,7 +13,6 @@ import { nanoid } from 'nanoid';
 // });
 
 const App = () => {
-  const [searchValue, setSearchValue] = useState('');
   const [contacts, setContacts] = useState(() => {
     const itemContacts = window.localStorage.getItem('itemContacts');
 
@@ -27,9 +27,6 @@ const App = () => {
   });
 
   const [filter, setFilter] = useState('');
-  const addContact = newContact => {
-    setContacts(prevContacts => [...prevContacts, newContact]);
-  };
 
   useEffect(() => {
     window.localStorage.setItem('itemContacts', JSON.stringify(contacts));
@@ -59,7 +56,7 @@ const App = () => {
   return (
     <section className={s.container}>
       <h1 className={s.title}>Phonebook</h1>
-      <ContactForm onSubmit={addContact} />
+      <ContactForm formik={addContact} />
 
       <SearchBox value={filter} onChange={e => setFilter(e.target.value)} />
 

@@ -1,5 +1,5 @@
 import s from './ContactList.mudule.css';
-
+import Contact from '../Contact/Contact';
 const ContactList = ({ contacts, onDelete }) => {
   console.log(contacts);
   return (
