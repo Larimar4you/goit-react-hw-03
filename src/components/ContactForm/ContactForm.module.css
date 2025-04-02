@@ -1,52 +1,56 @@
 .formWrapper {
   display: flex;
-  align-items: center;
   justify-content: center;
-  flex-direction: column;
-  gap: 16px;
-  border-radius: 10px;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f4f4;
 }
 
-.formWrapperField {
+.contactForm {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 20px;
+  width: 350px;
 }
 
-.form {
-  margin: 0 auto;
-  border-radius: 8px;
-  padding: 16px;
-  width: 320px;
-  background-color: rgb(48, 46, 46);
-  border: 1px solid black;
-  color: white; /* щоб текст був видимий на темному фоні */
+.label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
 }
 
-.form input {
-  padding: 8px;
-  border-radius: 4px;
+.input {
+  margin-top: 5px;
+  padding: 10px;
   border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s ease-in-out;
 }
 
-.form input:focus {
+.input:focus {
+  border-color: #007bff;
   outline: none;
-  border-color: #c57314;
 }
 
-.formBtn {
-  border-radius: 8px;
-  padding: 6px 12px;
-  min-width: 150px;
-  height: 40px;
-  background: #c57314;
+.contactFormBtn {
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  background-color: #007bff;
   border: none;
-  color: whitesmoke;
-  margin-top: 10px;
+  border-radius: 5px;
   cursor: pointer;
   transition: background 0.3s ease-in-out;
 }
 
-.formBtn:hover {
-  background: #915700;
+.contactFormBtn:hover {
+  background-color: #0056b3;
 }
