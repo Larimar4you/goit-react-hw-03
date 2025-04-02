@@ -1,36 +1,46 @@
-.contactWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.contactText {
-  color: rgb(150, 46, 46);
-}
-
-.contactBtn {
-  border-radius: 8px;
-  padding: 6px 12px;
-  width: 100px;
-  background: transparent;
-  border: none;
-  color: black;
-}
-
-.contactContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: baseline;
-}
-
 .contact {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-width: 240px;
-  gap: 15px;
-  background-color: lightblue;
-  padding: 15px;
-  border-radius: 8px;
+  padding: 10px;
+  border: 2px solid orange;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s;
+}
+.contact:hover {
+  background-color: #f9f9f9;
+}
+.contactContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.contactWrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.contactText {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.contactBtn {
+  background-color: lightgray;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+.contactBtn:hover {
+  background-color: darkgray;
+}
+
+.contactBtn:active {
+  background-color: black;
+  color: white;
 }

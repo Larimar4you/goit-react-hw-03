@@ -1,19 +1,13 @@
 .searchInput {
   width: 100%;
-  max-width: 300px;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
+  padding: 8px;
+  border: 2px solid purple;
   border-radius: 5px;
-  outline: none;
-  transition: border-color 0.3s ease-in-out;
+  margin-bottom: 20px;
+  transition: border-color 0.3s;
 }
 
 .searchInput:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-.searchInput::placeholder {
-  color: #888;
+  border-color: darkviolet;
+  outline: none;
 }
