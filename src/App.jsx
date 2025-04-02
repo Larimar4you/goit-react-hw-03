@@ -1,7 +1,7 @@
 import s from './App.module.css';
 import { useState, useEffect } from 'react';
 import ContactForm from './components/ContactForm/ContactForm';
-import ContactList from './components/Probe/ContactList';
+import ContactList from './components/ContactList/ContactList';
 import SearchBox from './components/SearchBox/SearchBox';
 import { useFormik } from 'formik';
 import { nanoid } from 'nanoid';
