@@ -7,11 +7,6 @@ import { useFormik } from 'formik';
 import { nanoid } from 'nanoid';
 import * as Yup from 'yup';
 
-const validationSchema = Yup.object({
-  name: Yup.string().min(3, 'Мінімум 3 символи').max(50, 'Максимум 50 символів').required('Обязательное поле'),
-  phone: Yup.string().matches(/^\d+$/, 'Только цифры').required('Обязательное поле'),
-});
-
 const App = () => {
   const [contacts, setContacts] = useState(() => {
     const itemContacts = window.localStorage.getItem('itemContacts');
@@ -52,6 +47,11 @@ const App = () => {
   const deleteContact = id => {
     setContacts(prevContacts => prevContacts.filter(contact => contact.id !== id));
   };
+
+  const validationSchema = Yup.object({
+    name: Yup.string().min(3, 'Мінімум 3 символи').max(50, 'Максимум 50 символів').required('Обязательное поле'),
+    phone: Yup.string().matches(/^\d+$/, 'Только цифры').required('Обязательное поле'),
+  });
 
   return (
     <section className={s.container}>
