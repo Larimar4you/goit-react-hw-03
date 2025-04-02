@@ -7,10 +7,10 @@ import { useFormik } from 'formik';
 import { nanoid } from 'nanoid';
 import * as Yup from 'yup';
 
-// const validationSchema = Yup.object({
-//   name: Yup.string().min(3, 'Мінімум 3 символи').max(50, 'Максимум 50 символів').required('Обязательное поле'),
-//   phone: Yup.string().matches(/^\d+$/, 'Только цифры').required('Обязательное поле'),
-// });
+const validationSchema = Yup.object({
+  name: Yup.string().min(3, 'Мінімум 3 символи').max(50, 'Максимум 50 символів').required('Обязательное поле'),
+  phone: Yup.string().matches(/^\d+$/, 'Только цифры').required('Обязательное поле'),
+});
 
 const App = () => {
   const [contacts, setContacts] = useState(() => {
