@@ -1,5 +1,4 @@
-import Contact from '../Contact/Contact';
-import s from './ContactList.module.css';
+import s from './ContactList.mudule.css';
 
 const ContactList = ({ contacts, onDelete }) => {
   console.log(contacts);
@@ -11,5 +10,3 @@ const ContactList = ({ contacts, onDelete }) => {
     </ul>
   );
 };
-
-export default ContactList;
