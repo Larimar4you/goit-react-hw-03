@@ -1,3 +1,4 @@
+/**/
 .contact {
   display: flex;
   align-items: center;
@@ -27,7 +28,7 @@
   font-size: 16px;
   font-weight: bold;
 }
-
+/**/
 .contactBtn {
   background-color: lightgray;
   border: none;
