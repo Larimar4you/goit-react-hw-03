@@ -1,12 +1,12 @@
 import s from './SearchBox.module.css';
 
-const SearchBox = ({ searchValue, onSearch }) => {
+const SearchBox = ({ filter, handleFilterChange }) => {
   return (
     <input
       className={s.searchInput}
       type='text'
-      value={searchValue}
-      onChange={evt => onSearch(evt.target.value)}
+      value={filter}
+      onChange={e => handleFilterChange(e.target.value)}
       placeholder='Find contacts by name'
     />
   );
